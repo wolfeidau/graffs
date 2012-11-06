@@ -1,0 +1,33 @@
+#
+# PostgreSQL is used as the primary persistence for this application, note however this configuration file assumes that
+# in development a DEV_POSTGRES_PASSWORD exists containing the local postgres dev password.
+#
+# In production a similar model is used to store the credentials this time using GRAFFS_POSTGRES_PASSWORD env variable.
+#
+development:
+  adapter: <%= RUBY_PLATFORM =~ /java/ ? 'jdbcpostgresql' : 'postgresql' %>
+  encoding: unicode
+  database: graffs_development
+  pool: 5
+  username: graffs
+  password: <%= ENV['DEV_POSTGRES_PASSWORD'] %>
+  host: localhost
+  port: 5432
+
+test:
+  adapter: <%= RUBY_PLATFORM =~ /java/ ? 'jdbcpostgresql' : 'postgresql' %>
+  encoding: unicode
+  database: graffs_test
+  pool: 5
+  username: graffs
+  password: <%= ENV['DEV_POSTGRES_PASSWORD'] %>
+  host: localhost
+  port: 5432
+
+production:
+  adapter: <%= RUBY_PLATFORM =~ /java/ ? 'jdbcpostgresql' : 'postgresql' %>
+  encoding: unicode
+  database: graffs_production
+  pool: 5
+  username: graffs
+  password: <%= ENV['GRAFFS_POSTGRES_PASSWORD'] %>
